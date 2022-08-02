@@ -20,6 +20,12 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+// liveness probe
+Route.get('/liveness', async ({ response }) => {
+  return response.json({ status: "ok" })
+})
+
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
