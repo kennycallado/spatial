@@ -18,11 +18,15 @@
 |
 */
 
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
 
-// liveness probe
-Route.get('/liveness', async ({ response }) => {
-  return response.json({ status: "ok" })
+// Health checker
+Route.get('health', async ({ response }) => {
+  // Quizá incluir discriminación por ip (solo responder peticiones locales)
+  const report = await HealthCheck.getReport()
+
+  return report.healthy ? response.ok(report) : response.badRequest(report)
 })
 
 Route.get('/', async ({ view }) => {
