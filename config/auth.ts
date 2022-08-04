@@ -64,7 +64,7 @@ const authConfig: AuthConfig = {
         | of the mentioned columns to find their user record.
         |
         */
-        uids: ['username'],
+        uids: ['username', 'token'],
 
         /*
         |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ const authConfig: AuthConfig = {
         | that time.
         |
         */
-        model: () => import('App/Models/user'),
+        model: () => import('App/Models/User'),
       },
     },
   },
